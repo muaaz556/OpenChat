@@ -1,0 +1,28 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="container d-flex justify-content-center align-items-center" style="height:100vh">
+    <div class="hero-unit border border-3 rounded-3 px-5 pt-5 pb-3" align="center">
+        <h1 class="pb-3">Welcome to RandomChat</h1>
+        <p>Login as User:</p>
+        <form>
+            <div class="row mb-3 mx-4">
+                <input type="text" class="form-control" id="username" placeholder="Username">
+            </div>
+            <div class="row mb-3 mx-4">
+                <input type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <hr class="my-4">
+        <p>
+            <a class="btn btn-primary btn-large" asp-area="" asp-page="/Privacy">Continue as Guest</a>
+        </p>
+
+    </div>
+</div>
+
+
