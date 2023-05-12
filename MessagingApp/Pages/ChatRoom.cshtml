@@ -1,0 +1,113 @@
+﻿@page
+@model ChatRoomModel
+@{
+    ViewData["Title"] = "Random Chat";
+}
+
+<div class="h-100 d-flex flex-column" >
+    <div class="row flex-column py-2 px-2 bg-dark text-white" style="height:60px">
+        <div class="col-4 col-md-4 h-100 d-flex align-items-center">
+            <a class="btn btn-danger" asp-area="" asp-page="/Index">
+                <i class="fa fa-angle-left" style="font-size:18px"></i> Leave Chat Room
+            </a>
+        </div>
+        <div class="col-4 col-md-4 h-100 d-flex align-items-center"><p class="h3">OpenChat</p></div>
+        <div class="col-4 col-md-4"></div>
+    </div>
+
+
+    <div class="row flex-column" >
+        @*<div class="container-fluid">*@
+            <div class="col-4 border-end border-3" style="height:100%">
+                <div class="row" id="scrollView" style="height:8%">
+                    <h3 class="pt-3 pb-2 px-3">Active Users:</h3>
+                </div>
+                <div class="col overflow-auto" id="scrollView" style="height:92%">
+                    <div class="row m-2" style="border-style: solid; border-radius: 20px;">
+                        <span class="m-2 align-middle">Username</span>
+                    </div>
+                    <div class="row m-2" style="border-style: solid; border-radius: 20px;">
+                        <span class="m-2 align-middle">Username</span>
+                    </div>
+                    <div class="row m-2" style="border-style: solid; border-radius: 20px;">
+                        <span class="m-2 align-middle">Username</span>
+                    </div>
+                    <div class="row m-2" style="border-style: solid; border-radius: 20px;">
+                        <span class="m-2 align-middle">Username</span>
+                    </div>
+                    <div class="row m-2" style="border-style: solid; border-radius: 20px;">
+                        <span class="m-2 align-middle">Username</span>
+                    </div>
+                    <div class="row m-2" style="border-style: solid; border-radius: 20px;">
+                        <span class="m-2 align-middle">Username</span>
+                    </div>
+                    <div class="row m-2" style="border-style: solid; border-radius: 20px;">
+                        <span class="m-2 align-middle">Username</span>
+                    </div>
+                    <div class="row m-2" style="border-style: solid; border-radius: 20px;">
+                        <span class="m-2 align-middle">Username</span>
+                    </div>
+                    <div class="row m-2" style="border-style: solid; border-radius: 20px;">
+                        <span class="m-2 align-middle">Username</span>
+                    </div>
+                    <div class="row m-2" style="border-style: solid; border-radius: 20px;">
+                        <span class="m-2 align-middle">Username</span>
+                    </div>
+                    <div class="row m-2" style="border-style: solid; border-radius: 20px;">
+                        <span class="m-2 align-middle">Username</span>
+                    </div>
+                    <div class="row m-2" style="border-style: solid; border-radius: 20px;">
+                        <span class="m-2 align-middle">Username</span>
+                    </div>
+                    <div class="row m-2" style="border-style: solid; border-radius: 20px;">
+                        <span class="m-2 align-middle">Username</span>
+                    </div>
+                    <div class="row m-2" style="border-style: solid; border-radius: 20px;">
+                        <span class="m-2 align-middle">Username</span>
+                    </div>
+                    <div class="row m-2" style="border-style: solid; border-radius: 20px;">
+                        <span class="m-2 align-middle">Username</span>
+                    </div>
+                    <div class="row m-2" style="border-style: solid; border-radius: 20px;">
+                        <span class="m-2 align-middle">Username</span>
+                    </div>
+                    <div class="row m-2" style="border-style: solid; border-radius: 20px;">
+                        <span class="m-2 align-middle">Username</span>
+                    </div>
+                    <div class="row m-2" style="border-style: solid; border-radius: 20px;">
+                        <span class="m-2 align-middle">Username</span>
+                    </div>
+                </div>
+            </div>
+        @*</div>*@
+    </div>
+    @*<div class="row p-1">
+            <div class="col-1">User</div>
+            <div class="col-5"><input type="text" id="userInput" /></div>
+        </div>
+        <div class="row p-1">
+            <div class="col-1">Message</div>
+            <div class="col-5"><input type="text" class="w-100" id="messageInput" /></div>
+        </div>
+        <div class="row p-1">
+            <div class="col-6 text-end">
+                <input type="button" id="sendButton" value="Send Message" />
+            </div>
+        </div>
+        <div class="row p-1">
+            <div class="col-6">
+                <hr />
+            </div>
+        </div>
+        <div class="row p-1">
+            <div class="col-6">
+                <ul id="messagesList"></ul>
+            </div>*@
+</div>
+
+
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
