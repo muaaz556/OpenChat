@@ -2,19 +2,37 @@
 
 var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
 
-
 let usersList = [];
 
-//Disable the send button until connection is established.
-//document.getElementById("sendButton").disabled = true;
+function update(value) {
+    var element = document.getElementById("sendButton");
+    if (value) {
+        //not disabled
+        element.classList.remove("disabled");
+    } else {
+        element.classList.add("disabled");
+    }
+}
+
+function sendMessage() {
+    var message = document.getElementById("textArea").value;
+    document.getElementById("textArea").value = '';
+    document.getElementById("sendButton").classList.add("disabled");
+    console.log("sending message");
+    connection.invoke("SendMessage", message).catch(function (err) {
+        return console.error(err.toString());
+    });
+    addMessage(message, 'white');
+    event.preventDefault();
+}
 
 connection.on("ReceiveMessage", function (user, message) {
-    var li = document.createElement("li");
-    document.getElementById("messagesList").appendChild(li);
+    addMessage(message, 'black');
+    //document.getElementById("messagesList").appendChild(li);
     // We can assign user-supplied strings to an element's textContent because it
     // is not interpreted as markup. If you're assigning in any other way, you 
     // should be aware of possible script injection concerns.
-    li.textContent = `${user} says ${message}`;
+    //li.textContent = `${user} says ${message}`;
 });
 
 connection.on("UserList", function (list) {
@@ -28,10 +46,11 @@ connection.on("UserList", function (list) {
     // should be aware of possible script injection concerns.
     //li.textContent = `${user} says ${message}`;
 });
+ 
 
 function addElement(user) {
     document.getElementById('scrollView').innerHTML += (
-        '<div id="' + user + '" class="row m-2" style="border-style: solid; border-radius: 20px;">' +
+        '<div id="' + user + '" class="row my-2 mx-3" style="border-style: solid; border-radius: 20px;">' +
         '<span class="m-2 align-middle">' + user + '</span>' +
         '</div > ');
 }
@@ -39,6 +58,22 @@ function addElement(user) {
 function removeElement(user) {
     const element = document.getElementById(user);
     element.remove();
+}
+
+function addMessage(message, color) {
+    var position = '';
+    if (color === 'black') {
+        color = 'bg-dark text-white';
+        position = 'start';
+    } else {
+        color = ''
+        position = 'end';
+    }
+    var innerContent = document.getElementById('messageArea').innerHTML;
+    document.getElementById('messageArea').innerHTML = (
+        `<div class="row mx-4 my-1 justify-content-${position}">
+            <div class="py-2 ${color}" style="border-style: solid; border-radius: 20px; width: max-content;">${message}</div>
+        </div>`) + innerContent;
 }
 
 connection.on("NewUser", function (user) {
@@ -66,16 +101,8 @@ connection.on("RemoveUser", function (user) {
 });
 
 connection.start().then(function () {
-    document.getElementById("sendButton").disabled = false;
 }).catch(function (err) {
     return console.error(err.toString());
 });
 
-document.getElementById("sendButton").addEventListener("click", function (event) {
-    var user = document.getElementById("userInput").value;
-    var message = document.getElementById("messageInput").value;
-    connection.invoke("SendMessage", user, message).catch(function (err) {
-        return console.error(err.toString());
-    });
-    event.preventDefault();
-});
+
