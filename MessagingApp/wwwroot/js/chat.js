@@ -1,8 +1,15 @@
 ﻿"use strict";
 
-var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+const urlParams = new URLSearchParams(window.location.search);
+const username = urlParams.get('username');
 
+var connection = new signalR.HubConnectionBuilder().withUrl(`/chatHub?username=${username}`).build();
+console.log(`/chatHub?username=${username}`);
 let usersList = [];
+
+connection.onclose(function () {
+    new bootstrap.Modal(document.getElementById("staticBackdrop")).show();
+});
 
 function update(value) {
     var element = document.getElementById("sendButton");
@@ -22,12 +29,12 @@ function sendMessage() {
     connection.invoke("SendMessage", message).catch(function (err) {
         return console.error(err.toString());
     });
-    addMessage(message, 'white');
+    addMessage(null, message, 'white');
     event.preventDefault();
 }
 
 connection.on("ReceiveMessage", function (user, message) {
-    addMessage(message, 'black');
+    addMessage(user, message, 'black');
     //document.getElementById("messagesList").appendChild(li);
     // We can assign user-supplied strings to an element's textContent because it
     // is not interpreted as markup. If you're assigning in any other way, you 
@@ -46,7 +53,7 @@ connection.on("UserList", function (list) {
     // should be aware of possible script injection concerns.
     //li.textContent = `${user} says ${message}`;
 });
- 
+
 
 function addElement(user) {
     document.getElementById('scrollView').innerHTML += (
@@ -60,20 +67,21 @@ function removeElement(user) {
     element.remove();
 }
 
-function addMessage(message, color) {
-    var position = '';
-    if (color === 'black') {
-        color = 'bg-dark text-white';
-        position = 'start';
-    } else {
-        color = ''
-        position = 'end';
-    }
+function addMessage(user, message, color) {
     var innerContent = document.getElementById('messageArea').innerHTML;
-    document.getElementById('messageArea').innerHTML = (
-        `<div class="row mx-4 my-1 justify-content-${position}">
-            <div class="py-2 ${color}" style="border-style: solid; border-radius: 20px; width: max-content;">${message}</div>
+    if (color === 'black') {
+        document.getElementById('messageArea').innerHTML = (
+            `<div class="row mx-4 my-1 justify-content-start">
+            <div class="pb-1 px-1" style="font-size:12px; color:gray">${user}</div>
+            <div class="py-2 bg-dark text-white" style="border-style: solid; border-radius: 20px; width: max-content;">${message}</div>
         </div>`) + innerContent;
+    } else {
+        document.getElementById('messageArea').innerHTML = (
+            `<div class="row mx-4 my-1 justify-content-end">
+            <div class="py-2" style="border-style: solid; border-radius: 20px; width: max-content;">${message}</div>
+        </div>`) + innerContent;
+
+    }
 }
 
 connection.on("NewUser", function (user) {

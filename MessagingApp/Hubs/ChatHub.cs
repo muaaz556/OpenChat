@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using Microsoft.AspNetCore.Http.Connections;
 
 namespace MessagingApp.Hubs
 {
@@ -9,7 +10,8 @@ namespace MessagingApp.Hubs
 
         public override async Task OnConnectedAsync()
         {
-            string user = Guid.NewGuid().ToString();
+            //var username = Context.GetHttpContext()?.Request.Query["username"];
+            string user = Context.GetHttpContext().Request.Query["username"];
             lock (_connections)
             {
                 var users = _connections.Values.ToArray();
@@ -22,6 +24,7 @@ namespace MessagingApp.Hubs
 
             await base.OnConnectedAsync();
         }
+
 
         public override async Task OnDisconnectedAsync(Exception? exception)
         {

@@ -5,24 +5,29 @@
 }
 
 <div class="container-fluid d-flex justify-content-center align-items-center bg-dark" style="height:100vh">
-    <div class="hero-unit border border-3 rounded-3 px-5 pt-5 pb-3 bg-white" align="center">
+    <div class="hero-unit border border-3 rounded-3 px-5 pt-5 pb-5 bg-white" align="center">
         <h1 class="pb-3">Welcome to <span style="">OpenChat</span></h1>
-        <p>Login as User:</p>
-        <form>
-            <div class="row mb-3 mx-4">
-                <input type="text" class="form-control" id="username" placeholder="Username">
+        <p>Enter a username to start chatting:</p>
+        <form id="usernameForm" class="g-3 needs-validation" action="/ChatRoom" novalidate>
+            <input type="text" class="form-control" name="username" id="usernameField" placeholder="Username" required>
+            <div class="invalid-feedback">
+                Please enter a username.
             </div>
-            <div class="row mb-3 mx-4">
-                <input type="password" class="form-control" id="password" placeholder="Password">
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button class="btn btn-primary btn-large mt-3" type="submit">Enter Chat Room</button>
         </form>
-        <hr class="my-4">
-        <p>
-            <a class="btn btn-primary btn-large" asp-area="" asp-page="/ChatRoom">Continue as Guest</a>
-        </p>
-
     </div>
 </div>
 
+<script>
+    'use strict'
 
+    var form = document.getElementById('usernameForm')
+    form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+    }, false)
+</script>

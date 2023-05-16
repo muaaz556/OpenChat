@@ -9,8 +9,12 @@ namespace MessagingApp.Pages
 {
 	public class ChatRoomModel : PageModel
     {
-        public void OnGet()
+        public void OnGet(string username)
         {
+            if (string.IsNullOrEmpty(username))
+            {
+                Response.Redirect("/index");
+            }
         }
     }
 }
