@@ -32,9 +32,7 @@ OpenChat is a web application built with ASP.NET that allows users to chat in a 
 
 ## Usage
 
-A Docker image of the OpenChat web application is currently running on a container in AWS Lightsail. The web application can be used by opening the following link: 
-
-:sparkles: **[Try OpenChat](https://aspnet-openchat.ug297vgjpbfos.ca-central-1.cs.amazonlightsail.com/)** :sparkles:
+A Docker image of the OpenChat web application is currently running on a container in AWS Lightsail. The web application can be used by opening the following link: :sparkles: **[Try OpenChat](https://aspnet-openchat.ug297vgjpbfos.ca-central-1.cs.amazonlightsail.com/)** :sparkles:
 
 ## Next Steps
 
