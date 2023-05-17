@@ -81,7 +81,7 @@ function sendMessage() {
 function addMessage(user, message) {
     const messageAreaElement = document.getElementById('messageArea')
     const messageAreaInnerHTML = messageAreaElement.innerHTML;
-    if (!user) {
+    if (user) {
         messageAreaElement.innerHTML = (
             `<div class="row mx-4 my-1 justify-content-start">
             <div class="pb-1 px-1" style="font-size:12px; color:gray">${user}</div>
