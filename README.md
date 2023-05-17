@@ -20,7 +20,7 @@
 
 ## About The Project
 ![OpenChat screenshot](openchat_screenshot.png)
-OpenChat is a web application built with ASP.NET that allows users to chat is a single open chat room without having to create an account. It uses the SignalR library to establish a connection between a client (the users browser) and the server. This allows the server to receive messages from a client and broadcast them to all other connected clients. 
+OpenChat is a web application built with ASP.NET that allows users to chat in a single open chat room without having to create an account. It uses the SignalR library to establish a connection between a client (the users browser) and the server. This allows the server to receive messages from a client and broadcast them to all other connected clients. 
 
 ### Built With
 
@@ -32,7 +32,9 @@ OpenChat is a web application built with ASP.NET that allows users to chat is a 
 
 ## Usage
 
-A docker image of the OpenChat web application is currently running on a container in AWS Lightsail. The web application can be used by opening the following link: [Use OpenChat](https://aspnet-openchat.ug297vgjpbfos.ca-central-1.cs.amazonlightsail.com/)
+A Docker image of the OpenChat web application is currently running on a container in AWS Lightsail. The web application can be used by opening the following link: 
+
+:sparkles: **[Try OpenChat](https://aspnet-openchat.ug297vgjpbfos.ca-central-1.cs.amazonlightsail.com/)** :sparkles:
 
 ## Next Steps
 
