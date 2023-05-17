@@ -19,7 +19,7 @@ namespace MessagingApp.Hubs
                 Clients.AllExcept(new List<string>() { Context.ConnectionId }).SendAsync("NewUser", user);
                 //var users = _connections.Values.ToArray();
                 //users = users.Where(x => x != _connections[Context.ConnectionId]).ToArray();
-                Clients.Client(Context.ConnectionId).SendAsync("UserList", users);
+                Clients.Client(Context.ConnectionId).SendAsync("UsersList", users);
             }
 
             await base.OnConnectedAsync();
